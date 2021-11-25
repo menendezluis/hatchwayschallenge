@@ -16,19 +16,26 @@ const StudentsList = () => {
     useEffect(() => {
         dispatch(fetchStudentList())
     }, [reload])
+   
     return (
-        <div className="container">
+        <div className="container ">
         
         {students.map((student,index) => (
-            <div className="row mb-2" key={index}>
+            <div className="row mb-2 mt-3" key={index}>
                 <div className="col-sm-3">
                     <img src={student.pic} className="rounded-circle border w-100 " alt=""/>
                 </div>
-                <div className="col-sm-7">
-                    <h3 className="text-uppercase">{student.firstName}{" "}{student.lastName}</h3>
-                    <p>{student.description}</p>
-                    <p>Company: {student.company}</p>
-                    <p>Average: {student.avg} %</p>
+                <div className="col-sm-7" style={{textAlign: "left"}}>
+                    <h3 className="text-uppercase card-title">{student.firstName}{" "}{student.lastName}</h3>
+                    <div className="text-left">
+                        <ul style={{listStyleType: "none", textAlign: "left",fontSize: '0.70em', color:"#a2a2a2"}}>
+                            <li>{student.email}</li>
+                    <li>Email: {student.email}</li>
+                    <li>Company: {student.company}</li>
+                    <li>Skill: {student.skill}</li>
+                    <li>Average: {student.avg} %</li>
+                    </ul>
+                    </div>
                </div>
                <div className="col-sm-2">
                
