@@ -1,6 +1,6 @@
 import React,{ useEffect, useState } from 'react'
 //redux
-import { fetchStudentList } from '../../store/slices/students'
+import { fetchStudentList,updateShowStudent } from '../../store/slices/students'
 import {useDispatch,useSelector} from 'react-redux'
 import {faPlus} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,12 +11,16 @@ import './style.css'
 const StudentsList = () => {
     const [reload, setReload] = useState(false)
     const { list: students } = useSelector(state => state.students)
+    
 //console.log("random",random)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchStudentList())
     }, [reload])
    
+    const handleShowOptions = (id) => {
+        dispatch(updateShowStudent(id))
+    }
     return (
         <div className="container ">
         
@@ -34,14 +38,24 @@ const StudentsList = () => {
                     <li>Company: {student.company}</li>
                     <li>Skill: {student.skill}</li>
                     <li>Average: {student.avg} %</li>
-                    </ul>
+                  </ul>
+                  
+                  {student.showTests ? <ul  style={{listStyleType: "none", textAlign: "left",fontSize: '0.70em', color:"#a2a2a2"}}>
+                    
+                     {student.grades.map((grade,index) => (
+                        <li key={index}>Test {index+1} - {grade}</li>
+                     ))} </ul>: null} 
+                         
                     </div>
                </div>
                <div className="col-sm-2">
-               
+               <div onClick={()=>handleShowOptions(student.id)}>
                <FontAwesomeIcon className="w-100" icon={faPlus} />
                     </div>
-                    <Divider />
+                    </div>
+                    <Divider 
+                    
+                    />
                    
             </div>
             
