@@ -34,7 +34,8 @@ export const fetchStudentList = () => dispatch => {
                     pic: student.pic,
                     skills: student.skill,
                     company: student.company,
-                    avg: student.grades.reduce((a,b) => parseInt(a)+parseInt(b))/student.grades.length
+                    avg: student.grades.reduce((a,b) => parseInt(a)+parseInt(b))/student.grades.length,
+                    grades: student.grades
                 }
                 array.push(object)
             });

@@ -2,13 +2,9 @@ import React,{ useEffect, useState } from 'react'
 //redux
 import { fetchStudentList } from '../../store/slices/students'
 import {useDispatch,useSelector} from 'react-redux'
-//material
-/*import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import RefreshIcon from '@mui/icons-material/Refresh';
-*/
-//vote
+import {faPlus} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Divider from '@mui/material/Divider';
 
 import './style.css'
 
@@ -22,14 +18,27 @@ const StudentsList = () => {
     }, [reload])
     return (
         <div className="container">
-        <h1>iam a robot</h1>
+        
         {students.map((student,index) => (
-            <div className="student" key={index}>
-                <img src={student.pic} alt=""/>
-                <p>Email: {student.email}</p>
-                <p>Company: {student.company}</p>
-                <p>Average: {student.avg} %</p>
+            <div className="row mb-2" key={index}>
+                <div className="col-sm-3">
+                    <img src={student.pic} className="rounded-circle border w-100 " alt=""/>
+                </div>
+                <div className="col-sm-7">
+                    <h3 className="text-uppercase">{student.firstName}{" "}{student.lastName}</h3>
+                    <p>{student.description}</p>
+                    <p>Company: {student.company}</p>
+                    <p>Average: {student.avg} %</p>
                </div>
+               <div className="col-sm-2">
+               
+               <FontAwesomeIcon className="w-100" icon={faPlus} />
+                    </div>
+                    <Divider />
+                   
+            </div>
+            
+
         ))}
                 
         </div>
