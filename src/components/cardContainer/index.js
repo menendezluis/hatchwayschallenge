@@ -10,21 +10,19 @@ import Divider from '@mui/material/Divider';
 
 
 const CardContainer = ({children}) => (
-    <Box m={2} sx={{ maxWidth: 600 }}>
+    <Box m={2} sx={{ maxWidth: 600 }} >
         <Card  >
-            <CardContent>
+            <CardContent style={{padding:0}}>
                 <SearchBox />
                 <>
                 <Divider  />
-                <div style={{ overflow: 'hidden'}}>
+                <div style={{ overflow: 'hidden', width: '100%',  height: '100%'}}>
                 <div style={{maxHeight:500,  overflow: 'auto'}}>
                     {children}</div>
                </div>
                 </>
             </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
-            </CardActions>
+            
         </Card>
     </Box>
 );
